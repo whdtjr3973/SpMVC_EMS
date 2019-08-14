@@ -2,6 +2,7 @@ package com.biz.ems.service;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -109,10 +110,13 @@ public class SendMailService {
 
 	public EmailVO findBySeq(long ems_seq) {
 		// TODO Auto-generated method stub
+		
 		EmailVO emailVO = eDao.findBySeq(ems_seq);
 		return emailVO;
 	}
 
+
+	
 
 
 

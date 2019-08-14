@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,6 +42,13 @@ public class FileService {
 		
 		return ret;
 	}
+	//vo일경우 ModelAttribute
+	public int update(@ModelAttribute("emailVO") EmailVO emailVO) {
+		int ret = eDao.update(emailVO);
+		
+		return ret;
+	}
+	
 	public int delete(long ems_seq) {
 		// TODO Auto-generated method stub
 		

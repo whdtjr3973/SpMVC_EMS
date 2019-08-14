@@ -23,6 +23,25 @@ public class EmailSQL {
 		
 	}
 	
+		public String Ems_update_sql() {
+			
+			SQL sql = new SQL()
+			.UPDATE("tbl_ems")
+			.SET("EMS_TO_EMAIL = #{ems_to_email}")
+			.SET("EMS_FROM_EMAIL = #{ems_from_email}")
+			.SET("EMS_TO_NAME = #{ems_to_name}")
+			.SET("EMS_FROM_NAME = #{ems_from_name}")
+			.SET("EMS_SEND_DATE = #{ems_send_date}")
+			.SET("EMS_SEND_TIME = #{ems_send_time}")
+			.SET("EMS_SUBJECT = #{ems_subject}")
+			.SET("EMS_CONTENT = #{ems_content}")
+			.SET("EMS_FILE1 = #{ems_file1}")
+			.SET("EMS_FILE2 = #{ems_file2}")
+			.WHERE("EMS_SEQ = #{ems_seq}");
+			
+			return sql.toString();
+		}
+	
 	
 
 }	

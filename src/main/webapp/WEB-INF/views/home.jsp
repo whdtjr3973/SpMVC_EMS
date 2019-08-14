@@ -44,7 +44,7 @@
 			<%@ include file="/WEB-INF/views/body/ems/view.jspf" %>
 		</c:when>
 		<c:otherwise>
-			<!-- <@ include file="/WEB-INF/views/body/ems/list.jspf" %> -->
+			<%@ include file="/WEB-INF/views/body/ems/list.jspf" %>
 		</c:otherwise>
 
 

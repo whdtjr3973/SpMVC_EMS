@@ -2,6 +2,8 @@ package com.biz.ems.controller;
 
 import java.util.List;
 
+import javax.servlet.annotation.MultipartConfig;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,6 +86,7 @@ public class EmailController {
 		xMailService.sendMail(emailVO);
 		return "home";
 	}
+	
 	@RequestMapping(value="/delete/{ems_seq}", method=RequestMethod.GET)
 	public String delete(
 			
@@ -92,6 +95,36 @@ public class EmailController {
 		fService.delete(ems_seq);
 		
 		return "home";
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.GET)
+	public String update(
+			@RequestParam("ems_seq")long ems_seq,
+			Model model) {
+		
+		EmailVO emailVO = xMailService.findBySeq(ems_seq);
+		
+		model.addAttribute("emailVO",emailVO);
+		model.addAttribute("BODY","WRITE");
+		return "home";
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String update(
+			@ModelAttribute("emailVO")EmailVO emailVO,
+			@RequestParam("file1") MultipartFile file1,
+			@RequestParam("file2") MultipartFile file2,
+			Model model) {
+		
+		String file_name1 = fService.fileUp(file1);
+		emailVO.setEms_file1(file_name1);
+		String file_name2 = fService.fileUp(file2);
+		emailVO.setEms_file2(file_name2);
+		
+		int ret = fService.update(emailVO);
+		xMailService.sendMail(emailVO);
+		
+		return "redirect:/ems/list";
 	}
 	
 	

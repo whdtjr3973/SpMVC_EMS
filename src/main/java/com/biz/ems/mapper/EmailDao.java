@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.UpdateProvider;
 
 import com.biz.ems.model.EmailVO;
 
@@ -35,6 +36,7 @@ public interface EmailDao {
 				resultType = Long.class,
 				before = true)
 	public int insert(EmailVO emailVO);
+	@UpdateProvider(value=EmailSQL.class, method="Ems_update_sql")
 	public int update(EmailVO emailVO);
 	@Delete(" DELETE FROM TBL_EMS ")
 	public int delete(long ems_seq);
