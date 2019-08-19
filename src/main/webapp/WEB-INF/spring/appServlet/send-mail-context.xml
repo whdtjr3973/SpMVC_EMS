@@ -6,8 +6,8 @@
 		<!-- email relay 설정 -->
 		<property name="host" value="smtp.naver.com"/>
 		<property name="port" value="465"/>
-		<property name="username" value="whdtjr3973@naver.com"/>
-		<property name="password" value="leejs12@"/>
+		<property name="username" value=""/>
+		<property name="password" value=""/>
 		
 		<property name="javaMailProperties">
 			<props>

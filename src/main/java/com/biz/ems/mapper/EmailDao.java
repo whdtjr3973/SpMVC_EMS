@@ -16,10 +16,13 @@ import com.biz.ems.model.EmailVO;
 public interface EmailDao {
 	@Select("SELECT * FROM tbl_ems")
 	public List<EmailVO> selectAll();
+	@Select("SELECT * FROM tbl_ems")
+	public int selectList();
 	@Select(" SELECT * FROM tbl_ems WHERE ems_seq = #{ems_seq} ")
 	public EmailVO findBySeq(long ems_seq);
-	
+	@Select(" SELECT * FROM tbl_ems WHERE ems_from_email = #{ems_from_email} ")
 	public List<EmailVO> findByFrom(String ems_from_email);
+	@Select(" SELECT * FROM tbl_ems WHERE ems_to_email = #{ems_to_email} ")
 	public List<EmailVO> findByTo(String ems_to_email);
 	
 	/*
@@ -40,4 +43,6 @@ public interface EmailDao {
 	public int update(EmailVO emailVO);
 	@Delete(" DELETE FROM TBL_EMS ")
 	public int delete(long ems_seq);
+	
 }
+

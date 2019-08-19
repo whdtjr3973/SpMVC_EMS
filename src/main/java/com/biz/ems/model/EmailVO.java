@@ -36,5 +36,13 @@ public class EmailVO {
     private String ems_content;
     private String ems_file1;
     private String ems_file2;
+	public void setStartIndex(int startIndex) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setTotalPerPage(int pageSize) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -1,8 +1,7 @@
 package com.biz.ems.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.annotation.MultipartConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,9 +33,13 @@ public class EmailController {
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(Model model) {
+	public String list(
+			@RequestParam(defaultValue="1") int curPage,
+			EmailVO emailVO,
+			Model model) {
 		
 		List<EmailVO> emsList = xMailService.selectAll();
+		
 		
 		model.addAttribute("ELIST", emsList);
 		model.addAttribute("BODY","LIST");
@@ -127,5 +130,14 @@ public class EmailController {
 		return "redirect:/ems/list";
 	}
 	
+	@RequestMapping(value="/search", method=RequestMethod.POST)
+	public String search(@ModelAttribute("emailVO") EmailVO emailVO, Model model) {
+		
+		List<EmailVO> srList= new ArrayList<>();
+		
+		model.addAttribute("SEARCHLIST", srList);
+		model.addAttribute("BODY", "SEARCH");
+		return "redirect:/ems/list";
+	}
 	
 }
