@@ -27,13 +27,13 @@
 
 	</tr>
 	<c:choose>
-		<c:when test="${empty ELIST}">
+		<c:when test="${empty SEARCHLIST}">
 			<tr>
 				<td colspan="6">데이터가 없습니다</td>
 			</tr>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${ELIST}" var="eVO" varStatus="s">
+			<c:forEach items="${SEARCHLIST}" var="eVO" varStatus="s">
 				<tr class="ems-row" data-seq="${eVO.ems_seq}">
 					<td>${eVO.ems_seq}</td>
 					<td>${eVO.ems_to_email}</td>
@@ -60,6 +60,6 @@
 			<option value="내용">내용</option>
 			<option value="작성자">작성자</option>
 		</select>
-		<input class="search" type="text" name="search"/> 
+		<input id="search" type="text" name="search"/> 
 	</form>
 </div>

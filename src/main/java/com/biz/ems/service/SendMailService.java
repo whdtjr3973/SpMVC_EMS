@@ -114,6 +114,27 @@ public class SendMailService {
 		EmailVO emailVO = eDao.findBySeq(ems_seq);
 		return emailVO;
 	}
+	
+	
+	public List<EmailVO> findByFromEmail(String search) {
+		// TODO Auto-generated method stub
+		
+		List<EmailVO> emailVO = eDao.findByFromEmail(search);
+		return emailVO;
+	}
+	
+	public List<EmailVO> findByContent(String search) {
+		// TODO Auto-generated method stub
+		
+		List<EmailVO> emailVO = eDao.findByContent(search);
+		return emailVO;
+	}
+	public List<EmailVO> findBySubject(String search) {
+		// TODO Auto-generated method stub
+		
+		List<EmailVO> emailVO = eDao.findByContent(search);
+		return emailVO;
+	}
 
 
 

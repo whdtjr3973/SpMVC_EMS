@@ -18,12 +18,21 @@ public interface EmailDao {
 	public List<EmailVO> selectAll();
 	@Select("SELECT * FROM tbl_ems")
 	public int selectList();
-	@Select(" SELECT * FROM tbl_ems WHERE ems_seq = #{ems_seq} ")
+	@Select(" SELECT * FROM tbl_ems WHERE ems_seq like '%' || #{ems_seq} || '%' ")
 	public EmailVO findBySeq(long ems_seq);
-	@Select(" SELECT * FROM tbl_ems WHERE ems_from_email = #{ems_from_email} ")
+	@Select(" SELECT * FROM tbl_ems WHERE ems_from_email like '%' || #{ems_from_email} || '%' ")
 	public List<EmailVO> findByFrom(String ems_from_email);
-	@Select(" SELECT * FROM tbl_ems WHERE ems_to_email = #{ems_to_email} ")
+	@Select(" SELECT * FROM tbl_ems WHERE ems_to_email like '%' || #{ems_to_email} || '%' ")
 	public List<EmailVO> findByTo(String ems_to_email);
+	
+	@Select(" SELECT * FROM tbl_ems WHERE ems_content like '%' || #{ems_content} || '%' ")
+	public List<EmailVO> findByContent(String search);
+	@Select(" SELECT * FROM tbl_ems WHERE ems_subject like '%' || #{ems_subject} || '%' ")
+	public List<EmailVO> findBySubject(String search);
+	@Select(" SELECT * FROM tbl_ems WHERE ems_from_email like '%' || #{ems_from_email} || '%' ")
+	public List<EmailVO> findByFromEmail(String search);
+	
+	
 	
 	/*
 	 * 매개변수가 2개 이상일 경우에는

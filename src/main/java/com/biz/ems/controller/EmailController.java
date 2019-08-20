@@ -131,13 +131,25 @@ public class EmailController {
 	}
 	
 	@RequestMapping(value="/search", method=RequestMethod.POST)
-	public String search(@ModelAttribute("emailVO") EmailVO emailVO, Model model) {
+	public String search(
+			@RequestParam("category") String category,
+			@RequestParam("search") String search,
+			@ModelAttribute("emailVO") List<EmailVO> emailVO,
+			Model model) {
 		
 		List<EmailVO> srList= new ArrayList<>();
+		if(category.equalsIgnoreCase("ems_from_email")) {
+			srList = xMailService.findByFromEmail(search);
+		} else if(category.equalsIgnoreCase("ems_content")) {
+			srList = xMailService.findByContent(search);
+		} else if(category.equalsIgnoreCase("ems_subject")) {
+			srList = xMailService.findBySubject(search);
+		}
+		
 		
 		model.addAttribute("SEARCHLIST", srList);
 		model.addAttribute("BODY", "SEARCH");
-		return "redirect:/ems/list";
+		return "home";
 	}
 	
 }
